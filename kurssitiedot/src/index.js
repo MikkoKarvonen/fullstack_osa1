@@ -4,9 +4,7 @@ import ReactDOM from 'react-dom'
 const Header = (props) => {
     return (
         <div>
-            <p>
-                <h1>{props.course}</h1>
-            </p>
+            <h1>{props.course}</h1>
         </div>
     )
 }
@@ -14,17 +12,17 @@ const Header = (props) => {
 const Content = (props) => {
     return (
         <div>
-            <p>
-                <p>
-                    {props.part1} {props.exercises1}
-                </p>
-                <p>
-                    {props.part2} {props.exercises2}
-                </p>
-                <p>
-                    {props.part3} {props.exercises3}
-                </p>
-            </p>
+            <Part part={props.part1} exercises={props.exercises1} />
+            <Part part={props.part2} exercises={props.exercises2} />
+            <Part part={props.part3} exercises={props.exercises3} />
+        </div>
+    )
+}
+
+const Part = (props) => {
+    return (
+        <div>
+            <p>{props.part} {props.exercises}</p>
         </div>
     )
 }
@@ -32,9 +30,7 @@ const Content = (props) => {
 const Total = (props) => {
     return (
         <div>
-            <p>
-                <p>yhteensä {props.total} tehtävää</p>
-            </p>
+            <p>yhteensä {props.total} tehtävää</p>
         </div>
     )
 }
