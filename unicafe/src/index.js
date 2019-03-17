@@ -2,15 +2,23 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 const Statistics = ({good, bad, neutral}) => {
+    const total = good + bad + neutral;
+    const statistics = (total > 0) ? (
+        <div>
+            <p>hyvä {good}</p>
+            <p>neutraali {neutral}</p>
+            <p>huono {bad}</p>
+            <p>yhteensä {good + bad + neutral}</p>
+            <p>keskiarvo {(good + bad * (-1) + neutral * 0) / (good + bad + neutral)}</p>
+            <p>positiivisia {good / (good + bad + neutral) * 100} %</p>
+        </div>
+    ) : (
+        <p>Ei yhtään palautetta annettu</p>
+    )
     return(
         <div>
-        <h1>Statistiikka</h1>
-        <p>hyvä {good}</p>
-        <p>neutraali {neutral}</p>
-        <p>huono {bad}</p>
-        <p>yhteensä {good + bad + neutral}</p>
-        <p>keskiarvo {(good + bad * (-1) + neutral * 0) / (good + bad + neutral)}</p>
-        <p>positiivisia {good / (good + bad + neutral) * 100} %</p>
+            <h1>Statistiikka</h1>
+            {statistics}
         </div>
     )
 }
