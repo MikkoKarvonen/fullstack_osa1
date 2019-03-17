@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 
 const Statistic = ({text, value, pre}) => {
     return(
-        <div>
-            <p>{text} {value} {pre}</p>
-        </div>
+        <tr>
+            <td>{text}</td><td>{value} {pre}</td>
+        </tr>
     )
 }
 
@@ -13,12 +13,16 @@ const Statistics = ({good, bad, neutral}) => {
     const total = good + bad + neutral;
     const statistics = (total > 0) ? (
         <div>
-            <Statistic text="hyvä" value={good} />
-            <Statistic text="neutraali" value={neutral} />
-            <Statistic text="huono" value={bad} />
-            <Statistic text="yhteensä" value={good + bad + neutral} />
-            <Statistic text="keskiarvo" value={(good + bad * (-1) + neutral * 0) / (good + bad + neutral)} />
-            <Statistic text="positiivisia" value={good / (good + bad + neutral) * 100} pre='%'/>
+            <table>
+                <tbody>
+                    <Statistic text="hyvä" value={good} />
+                    <Statistic text="neutraali" value={neutral} />
+                    <Statistic text="huono" value={bad} />
+                    <Statistic text="yhteensä" value={good + bad + neutral} />
+                    <Statistic text="keskiarvo" value={(good + bad * (-1) + neutral * 0) / (good + bad + neutral)} />
+                    <Statistic text="positiivisia" value={good / (good + bad + neutral) * 100} pre='%'/>
+                </tbody>
+            </table>
         </div>
     ) : (
         <p>Ei yhtään palautetta annettu</p>
