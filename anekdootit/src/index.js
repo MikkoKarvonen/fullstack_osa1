@@ -5,6 +5,7 @@ const App = (props) => {
     const votes = new Array(6 + 1).join('0').split('').map(parseFloat)
     const [selected, setSelected] = useState(0)
     const [vote, setVote] = useState(votes)
+    const [max, setMax] = useState(0);
 
     const changeSelected = () => {
         const newSelected = Math.floor(Math.random() * anecdotes.length);
@@ -15,14 +16,24 @@ const App = (props) => {
         const copyVotes = [...vote];
         copyVotes[selected] += 1;
         setVote(copyVotes)
+        findMax(copyVotes);
+    }
+
+    const findMax = (copyVotes) => {
+        const max = Math.max(...copyVotes);
+        setMax(copyVotes.indexOf(max));
     }
 
     return (
         <div>
+            <h1>Anecdote of the Day</h1>
             <p>{props.anecdotes[selected]}</p>
             <p>has {vote[selected]} votes</p>
             <button onClick={() => addVote()}>vote</button>
             <button onClick={() => changeSelected()}>next anecdote</button>
+            <h1>Anecdote of the Day</h1>
+            <p>{props.anecdotes[max]}</p>
+            <p>has {vote[max]} votes</p>
         </div>
     )
 }
